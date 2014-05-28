@@ -1,0 +1,20 @@
+body 
+  div class="container"
+   div class="jumbotron"
+    h1 Flatiron Ruby005 Countdown
+    h2#countdown-holder Countdown goes here!
+
+javascript:
+	var endDate = new Date(2014,05,02,09,00,00);
+	var timeSpan = countdown(null, endDate );
+	var clock = document.getElementById("countdown-holder");
+
+	var timer = setInterval(function() {
+		console.log(timeSpan = countdown(null, endDate ));
+		if(timeSpan < 1)
+		{
+			clearInterval(timer); // need to find a way to set timespan at the global level so even after someone refreshes the page the timer doesn't run and the new clock text appears
+
+		}
+		console.log(clock.innerHTML = countdown(null, endDate ).toString());
+	},1000);
