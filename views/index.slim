@@ -1,8 +1,9 @@
 body 
   div class="container"
    div class="jumbotron"
-    h1 Flatiron Ruby005 Countdown
-    h2#countdown-holder Countdown goes here!
+    h1#h1 Flatiron Ruby005 Countdown
+    h2#countdown-holder 
+    div#gif
 
     div class="margin-base-vertical"
 	  small class="text-muted" <a href="https://www.flickr.com/photos/sordie/11216849885/">Background picture by Thomas Renken @flickr</a>. Used under <a href="http://creativecommons.org/licenses/by/2.0/deed.en">Creative Commons - Attribution</a>.</small>
@@ -12,16 +13,21 @@ body
 
 
 javascript:
-	var endDate = new Date(2014,05,02,09,00,00);
-	var timeSpan = countdown(null, endDate );
-	var clock = document.getElementById("countdown-holder");
-
 	var timer = setInterval(function() {
-		console.log(timeSpan = countdown(null, endDate ));
-		if(timeSpan < 1)
+    var endDate = new Date(2014,05,01,19,47,00),
+	  h1 = document.getElementById("h1"),
+	  clock = document.getElementById("countdown-holder"),
+	  gif = document.getElementById("gif"),
+	  timeSpan = countdown(null, endDate);
+ 
+		// breaks recursion
+	  if(timeSpan.value < 1)
 		{
-			clearInterval(timer); // need to find a way to set timespan at the global level so even after someone refreshes the page the timer doesn't run and the new clock text appears
-
+		  clearInterval(timer); // need to find a way to set timespan at the global level so even after someone refreshes the page the timer doesn't run and the new clock text appears
+		  return h1.innerHTML = "Flatiron Ruby005 Has Begun!",
+		  clock.innerHTML = "", gif.innerHTML = "<iframe src='https://giphy.com/embed/MOWPkhRAUbR7i' width='700' height='316' frameBorder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
 		}
-		console.log(clock.innerHTML = countdown(null, endDate ).toString());
+ 
+		clock.innerHTML = timeSpan.toString();
+ 
 	},1000);
